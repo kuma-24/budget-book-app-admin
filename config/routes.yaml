@@ -1,3 +1,6 @@
-dashboard_top:
+security_signin:
     path: /
-    controller: App\Controller\Dashboard\DashboardController::top
+    controller: App\Controller\SecurityController::signin
+dashboard_home:
+    path: /home
+    controller: App\Controller\DashboardController::home
