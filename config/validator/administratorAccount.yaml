@@ -1,0 +1,7 @@
+App\Entity\AdministratorAccount:
+    properties:
+        first_name:
+            - NotBlank: ~
+            - Length:
+                max: 20
+                maxMessage: "文字数多すぎるかも {{ limit }} characters."
