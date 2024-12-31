@@ -1,6 +1,6 @@
-security_signin:
-    path: /
-    controller: App\Controller\SecurityController::signin
-dashboard_home:
-    path: /home
-    controller: App\Controller\DashboardController::home
+administrator_signup:
+    path: /signup
+    controller: App\Controller\AdministratorController::signup
+administrator_signin:
+    path: /signin
+    controller: App\Controller\AdministratorController::signin
