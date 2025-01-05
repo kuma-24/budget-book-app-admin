@@ -12,39 +12,24 @@
  * The "importmap:require" command can be used to add new entries to this file.
  */
 return [
-    // // desktop
-    // 'desktop-base' => [
-    //     'path' => './assets/desktop/_base-layout/js/base.js',
-    //     'entrypoint' => true,
-    // ],
-    // 'desktop-security-signin' => [
-    //     'path' => './assets/desktop/security/js/security-signin.js',
-    //     'entrypoint' => true,
-    // ],
-    // 'desktop-security-signup' => [
-    //     'path' => './assets/desktop/security/js/security-signup.js',
-    //     'entrypoint' => true,
-    // ],
-    // 'desktop-dashboard-home' => [
-    //     'path' => './assets/desktop/dashboard/js/dashboard-home.js',
-    //     'entrypoint' => true,
-    // ],
-
-    // // mobile
-    // 'mobile-base' => [
-    //     'path' => './assets/mobile/_base-layout/js/base.js',
-    //     'entrypoint' => true,
-    // ],
-    // 'mobile-security-signin' => [
-    //     'path' => './assets/mobile/security/js/security-signin.js',
-    //     'entrypoint' => true,
-    // ],
-    // 'mobile-security-signup' => [
-    //     'path' => './assets/mobile/security/js/security-signup.js',
-    //     'entrypoint' => true,
-    // ],
-    // 'mobile-dashboard-home' => [
-    //     'path' => './assets/mobile/dashboard/js/dashboard-home.js',
-    //     'entrypoint' => true,
-    // ],
+    'mobile-base-layout' => [
+        'path' => './assets/mobile/_base_layout/js/base.js',
+        'entrypoint' => true,
+    ],
+    'mobile-dashboard-top' => [
+        'path' => './assets/mobile/dashboard/js/dashboard_top.js',
+        'entrypoint' => true
+    ],
+    'mobile-dashboard-home' => [
+        'path' => './assets/mobile/dashboard/js/dashboard_home.js',
+        'entrypoint' => true
+    ],
+    'mobile-administrator-signin' => [
+        'path' => './assets/mobile/administrator/js/administrator_signin.js',
+        'entrypoint' => true,
+    ],
+    'mobile-administrator-signup' => [
+        'path' => './assets/mobile/administrator/js/administrator_signup.js',
+        'entrypoint' => true,
+    ],
 ];

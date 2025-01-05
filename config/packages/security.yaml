@@ -18,6 +18,13 @@ security:
             lazy: true
             provider: app_user_provider
 
+            form_login:
+                login_path: administrator_signin
+                check_path: administrator_signin
+                username_parameter: administrator_signin[email]
+                password_parameter: administrator_signin[password]
+                default_target_path: /home
+
             # activate different ways to authenticate
             # https://symfony.com/doc/current/security.html#the-firewall
 
@@ -27,8 +34,7 @@ security:
     # Easy way to control access for large sections of your site
     # Note: Only the *first* access control that matches will be used
     access_control:
-        # - { path: ^/admin, roles: ROLE_ADMIN }
-        # - { path: ^/profile, roles: ROLE_USER }
+        - { path: ^/home, roles: ['ROLE_ACTIVE_USER', 'ROLE_ADMIN_MEMBER'] }
 
 when@test:
     security:

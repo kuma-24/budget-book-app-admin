@@ -3,9 +3,9 @@
 namespace App\Controller;
 
 use App\Entity\Administrator;
-use App\Repository\AdministratorRepository;
-use Doctrine\ORM\EntityManager;
-use Doctrine\ORM\EntityManagerInterface;
+use App\Form\AdministratorSigninType;
+use App\Form\AdministratorSignupType;
+use App\Service\AdministratorService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -13,36 +13,42 @@ use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 class AdministratorController extends AbstractController
 {
-    public function __construct()
+    private $administratorService;
+
+    public function __construct(AdministratorService $administratorService)
     {
-        
+        $this->administratorService = $administratorService;
     }
 
-    public function signup(Request $request)
+    public function signin(Request $request, AuthenticationUtils $authenticationUtils): Response
     {
         $deviceType = $request->attributes->get('device');
 
-        return $this->render("{$deviceType}/administrator_security/signup.html.twig");
+        $administrator = new Administrator;
+        $form = $this->createForm(AdministratorSigninType::class, $administrator);
+
+        return $this->render("{$deviceType}/administrator/signin.html.twig", [
+            'error' => $authenticationUtils->getLastAuthenticationError(),
+            'form' => $form->createView(),
+        ]);
     }
 
-    public function signin(Request $request, EntityManagerInterface $entityManager)
+    public function signup(Request $request): Response
     {
         $deviceType = $request->attributes->get('device');
 
-        $a = $entityManager->getRepository(Administrator::class)->findAll();
+        $administrator = new Administrator;
+        $form = $this->createForm(AdministratorSignupType::class, $administrator);
+        $form->handleRequest($request);
 
-        dd($a);
+        if ($form->isSubmitted() && $form->isValid()){
+            $this->administratorService->registerAdministrator($administrator);
 
-        return $this->render("{$deviceType}/administrator_security/signin.html.twig");
-    }
+            return $this->redirectToRoute('administrator_signin');
+        }
 
-    public function accountIndex(Request $request)
-    {
-
-    }
-
-    public function accountCreate(Request $request)
-    {
-
+        return $this->render("{$deviceType}/administrator/signup.html.twig", [
+            'form' => $form->createView(),
+        ]);
     }
 }

@@ -1,0 +1,12 @@
+{% extends 'mobile/_base_layout/base.html.twig' %}
+
+{% block importmap %}
+    {{ importmap(['mobile-base-layout', 'mobile-dashboard-top']) }}
+{% endblock %}
+
+{% block body %}
+    <p>家計簿管理！！</p>
+    <a href="{{ path('administrator_signup') }}">サインアップ</a>
+    <br>
+    <a href="{{ path('administrator_signin') }}">サインイン</a>
+{% endblock %}

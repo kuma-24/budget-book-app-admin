@@ -19,6 +19,12 @@ class AdministratorRepository extends ServiceEntityRepository implements Passwor
         parent::__construct($registry, Administrator::class);
     }
 
+    public function save(Administrator $administrator)
+    {
+        $this->getEntityManager()->persist($administrator);
+        $this->getEntityManager()->flush();
+    }
+
     /**
      * Used to upgrade (rehash) the user's password automatically over time.
      */
