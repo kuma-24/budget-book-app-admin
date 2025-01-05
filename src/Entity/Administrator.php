@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\AdministratorRepository;
+use DateTimeImmutable;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -39,9 +40,6 @@ class Administrator implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(targetEntity: ExpenseCategory::class, mappedBy: 'administrator')]
     private Collection $expenseCategories;
 
-    #[ORM\ManyToOne(inversedBy: 'administrators')]
-    private ?ExpensePaymentCategory $expensePaymentCategory = null;
-
     #[ORM\OneToOne(mappedBy: 'administrator', cascade: ['persist', 'remove'])]
     private ?AdministratorAccount $administratorAccount = null;
 
@@ -59,6 +57,9 @@ class Administrator implements UserInterface, PasswordAuthenticatedUserInterface
 
     public function __construct()
     {
+        $this->roles = ['ROLE_ACTIVE_USER', 'ROLE_ADMIN_MEMBER'];
+        $this->created_at = new DateTimeImmutable();
+        $this->updated_at = new DateTimeImmutable();
         $this->expenseCategories = new ArrayCollection();
         $this->expensePaymentCategories = new ArrayCollection();
     }
@@ -164,18 +165,6 @@ class Administrator implements UserInterface, PasswordAuthenticatedUserInterface
                 $expenseCategory->setAdministrator(null);
             }
         }
-
-        return $this;
-    }
-
-    public function getExpensePaymentCategory(): ?ExpensePaymentCategory
-    {
-        return $this->expensePaymentCategory;
-    }
-
-    public function setExpensePaymentCategory(?ExpensePaymentCategory $expensePaymentCategory): static
-    {
-        $this->expensePaymentCategory = $expensePaymentCategory;
 
         return $this;
     }
