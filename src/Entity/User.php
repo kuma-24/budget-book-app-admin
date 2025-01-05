@@ -51,6 +51,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     public function __construct()
     {
+        $this->roles = ['ROLE_ACTIVE_USER', 'ROLE_GENERAL_MEMBER'];
+        $this->created_at = new DateTimeImmutable();
+        $this->updated_at = new DateTimeImmutable();
         $this->expenseTransactions = new ArrayCollection();
     }
 
@@ -89,8 +92,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function getRoles(): array
     {
         $roles = $this->roles;
-        // guarantee every user at least has ROLE_USER
-        $roles[] = 'ROLE_USER';
 
         return array_unique($roles);
     }
