@@ -13,3 +13,19 @@ administrator_signup:
 administrator_signin:
     path: /signin
     controller: App\Controller\AdministratorController::signin
+
+expense_category_index:
+    path: /expense_category/index
+    controller: App\Controller\ExpenseCategoryController::index
+
+expense_category_create:
+    path: /expense_category/create
+    controller: App\Controller\ExpenseCategoryController::create
+
+expense_payment_category_index:
+    path: /expense_payment_category/index
+    controller: App\Controller\ExpensePaymentCategoryController::index
+
+expense_payment_category_create:
+    path: /expense_payment_category/create
+    controller: App\Controller\ExpensePaymentCategoryController::create

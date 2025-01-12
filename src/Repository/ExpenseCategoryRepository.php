@@ -4,6 +4,7 @@ namespace App\Repository;
 
 use App\Entity\ExpenseCategory;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\Query;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -16,28 +17,25 @@ class ExpenseCategoryRepository extends ServiceEntityRepository
         parent::__construct($registry, ExpenseCategory::class);
     }
 
-    //    /**
-    //     * @return ExpenseCategory[] Returns an array of ExpenseCategory objects
-    //     */
-    //    public function findByExampleField($value): array
-    //    {
-    //        return $this->createQueryBuilder('e')
-    //            ->andWhere('e.exampleField = :val')
-    //            ->setParameter('val', $value)
-    //            ->orderBy('e.id', 'ASC')
-    //            ->setMaxResults(10)
-    //            ->getQuery()
-    //            ->getResult()
-    //        ;
-    //    }
+    public function save(ExpenseCategory $expenseCategory)
+    {
+        $this->getEntityManager()->persist($expenseCategory);
+        $this->getEntityManager()->flush();
+    }
 
-    //    public function findOneBySomeField($value): ?ExpenseCategory
-    //    {
-    //        return $this->createQueryBuilder('e')
-    //            ->andWhere('e.exampleField = :val')
-    //            ->setParameter('val', $value)
-    //            ->getQuery()
-    //            ->getOneOrNullResult()
-    //        ;
-    //    }
+    public function selectAll(): iterable
+    {
+        $sql =
+            'SELECT
+                expenseCategory, administrator
+            FROM
+                App\Entity\ExpenseCategory expenseCategory
+            INNER JOIN
+                expenseCategory.administrator administrator'
+        ;
+
+        $query = $this->getEntityManager()->createQuery($sql);
+
+        return $query->toIterable([], Query::HYDRATE_ARRAY);
+    }
 }
