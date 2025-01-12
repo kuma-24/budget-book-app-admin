@@ -35,6 +35,10 @@ security:
     # Note: Only the *first* access control that matches will be used
     access_control:
         - { path: ^/home, roles: ['ROLE_ACTIVE_USER', 'ROLE_ADMIN_MEMBER'] }
+        - { path: ^/expense_category/index, roles: ['ROLE_ACTIVE_USER', 'ROLE_ADMIN_MEMBER'] }
+        - { path: ^/expense_category/create, roles: ['ROLE_ACTIVE_USER', 'ROLE_ADMIN_MEMBER'] }
+        - { path: ^/expense_payment_category/index, roles: ['ROLE_ACTIVE_USER', 'ROLE_ADMIN_MEMBER'] }
+        - { path: ^/expense_payment_category/create, roles: ['ROLE_ACTIVE_USER', 'ROLE_ADMIN_MEMBER'] }
 
 when@test:
     security:

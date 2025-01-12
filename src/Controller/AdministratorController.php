@@ -41,7 +41,7 @@ class AdministratorController extends AbstractController
         $form = $this->createForm(AdministratorSignupType::class, $administrator);
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()){
+        if ($form->isSubmitted() && $form->isValid()) {
             $this->administratorService->registerAdministrator($administrator);
 
             return $this->redirectToRoute('administrator_signin');

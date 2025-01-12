@@ -1,0 +1,26 @@
+{% extends 'mobile/_base_layout/base.html.twig' %}
+
+{% block importmap %}
+    {{ importmap(['mobile-base-layout', 'mobile-expense-payment-category-index']) }}
+{% endblock %}
+
+{% block body %}
+    <p>決済カテゴリ管理</p>
+    <br>
+    <a href="{{ path('expense_payment_category_create') }}">決済カテゴリ作成</a>
+    <br>
+    <br>
+
+    {% for expensePaymentCategory in expensePaymentCategories %}
+        <tr>
+            <td>{{ expensePaymentCategory.id }}</td>
+            <td>{{ expensePaymentCategory.name }}</td>
+            <td>{{ expensePaymentCategory.administrator.id }}</td>
+            <br>
+        </tr>
+    {% endfor %}
+
+    <br>
+    <br>
+    <a href="{{ path('dashboard_home') }}">戻る</a>
+{% endblock %}

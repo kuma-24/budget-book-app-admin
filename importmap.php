@@ -32,4 +32,20 @@ return [
         'path' => './assets/mobile/administrator/js/administrator_signup.js',
         'entrypoint' => true,
     ],
+    'mobile-expense-category-index' => [
+        'path' => './assets/mobile/expense_category/js/expense_category_index.js',
+        'entrypoint' => true,
+    ],
+    'mobile-expense-category-create' => [
+        'path' => './assets/mobile/expense_category/js/expense_category_create.js',
+        'entrypoint' => true,
+    ],
+    'mobile-expense-payment-category-index' => [
+        'path' => './assets/mobile/expense_payment_category/js/expense_payment_category_index.js',
+        'entrypoint' => true,
+    ],
+    'mobile-expense-payment-category-create' => [
+        'path' => './assets/mobile/expense_payment_category/js/expense_payment_category_create.js',
+        'entrypoint' => true,
+    ],
 ];
