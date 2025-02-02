@@ -26,8 +26,6 @@ class ExpensePaymentCategoryCreateType extends AbstractType
         $builder
             ->add('name', TextType::class, $this->formOptions['name'])
             ->add('save', SubmitType::class)
-            ->setAction('/expense_payment_category/create')
-            ->setMethod('post')
         ;
     }
 
